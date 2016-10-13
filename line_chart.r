@@ -1,0 +1,5 @@
+library(ggplot2)
+data <- read.table("test.txt",header=FALSE,sep = "\t")
+p <- ggplot(data,aes(x=data$V2,y=data$V3,fill=data$V1,group = data$V1,colour = data$V1)) + geom_line(size=1) + theme_bw() + labs(title = "Line Chart for Exon Numbers") + xlab("Exon_num") + ylab("Percent(%)") + theme(axis.title.x = element_text(size = 18,colour = "black"),axis.title.y = element_text(size=18,colour = "black"),axis.text.x = element_text(size = 18,colour = "black"),axis.text.y = element_text(size=18,colour = "black"),plot.title = element_text(size=18,color="black"),panel.grid=element_blank(),legend.title=element_text(color="black",size = 18),legend.text = element_text(color="black",size=18)) 
+p + guides(color=guide_legend(title="Class"))
+ggsave("line_exon.png",width = 4.5,height = 5)
