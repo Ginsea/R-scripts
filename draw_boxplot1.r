@@ -1,0 +1,6 @@
+library(ggplot2)
+data <- read.table("kiwi_fpkm.txt",header = TRUE,sep = "\t")
+colnames(data) <- c("Trans","FPKM","Class","Tissue")
+p <- ggplot(data,aes(x=Tissue,y=log10(FPKM),fill=Class)) + geom_boxplot() + theme_bw()
+q <- p + labs(title="Boxplot for FPKM Values") + xlab("Tissue") + ylab("log10(FPKM)") + theme(axis.title.x = element_text(size=16,colour = "black") , axis.title.y = element_text(size=18,colour = "black"),axis.text.x = element_text(size = 18,colour = "black",vjust = 0.5, hjust = 0.5,angle = 45),axis.text.y = element_text(size=18,colour = "black"),plot.title = element_text(size=18,color="black"),panel.grid=element_blank(),legend.title=element_text(color="black",size = 18),legend.text = element_text(color="black",size=18))
+ggsave("fpkm_boxplot.png",width = 15,height = 7)
