@@ -1,0 +1,7 @@
+library(ggplot2)
+data <- read.table("tmp/loci/loci_score.txt",header = TRUE, sep = "\t")
+colnames(data) <- c("NCBI","PD","GD","Class")
+p <- ggplot(data,aes(x=GD,y=PD)) + aes(shape=Class) + geom_point(aes(colour=Class)) + theme_bw()
+q <- p + theme(axis.title.x = element_text(size=18,colour = "black"),axis.title.y = element_text(size=18,colour = "black"),axis.text.x = element_text(size=18,colour = "black",angle = 45, vjust = 0.5, hjust = 0.5),axis.text.y = element_text(size=18,colour = "black"),legend.title=element_text(colour = "black",size = 18),legend.text = element_text(color = "black",size=18))
+q + guides(fill=guide_legend(title = NULL))
+ggsave("tmp/loci/est_noloci_s.png",width = 4.5,height = 5.5)
